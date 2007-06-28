@@ -1,0 +1,4 @@
+category: Audio Video Python
+requires: cygwin glib2 gstreamer010 gstreamer010-plugins-base python python-gobject2
+sdesc: "Python GStreamer 0.10 bindings"
+ldesc: "Python bindings for the GStreamer 0.10 libraries"

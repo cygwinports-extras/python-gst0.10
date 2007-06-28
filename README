@@ -1,0 +1,120 @@
+python-gstreamer010
+------------------------------------------
+Python bindings for the GStreamer 0.10 libraries
+
+Runtime requirements:
+  cygwin-1.5.24-2
+  glib2-2.12.12-2
+  gstreamer010-0.10.13-1
+  gstreamer010-plugins-base-0.10.13-1
+  python-2.5.1-3
+  python-gobject2-2.12.3-2
+
+Build requirements:
+(besides corresponding -devel packages)
+  cygwin-1.5.24-2
+  autoconf2.5-2.61-1
+  automake1.9-1.9.6-2
+  binutils-20060817-1
+  cygport-0.3.1-1
+  gawk-3.1.5-4
+  gcc-core-3.4.4-3
+  libtool1.5-1.5.23a-2
+  make-3.81-1
+  pkg-config-0.21-1
+  sed-4.1.5-2
+
+Canonical website:
+  http://gstreamer.freedesktop.org/
+
+Canonical download:
+  http://gstreamer.freedesktop.org/src/gst-python/
+
+-------------------------------------------
+
+Build instructions:
+  unpack python-gstreamer010-0.10.7.1-1-src.tar.bz2
+    if you use setup to install this src package, it will be
+	 unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./python-gstreamer010-0.10.7.1-1.cygport all
+
+This will create:
+  /usr/src/python-gstreamer010-0.10.7.1-1-src.tar.bz2
+  /usr/src/python-gstreamer010-0.10.7.1-1.tar.bz2
+
+-------------------------------------------
+
+Files included in the binary package:
+
+  /usr/lib/pkgconfig/gst-python-0.10.pc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.dll
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.la
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.py
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.pyc
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.pyo
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/interfaces.dll
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/interfaces.la
+  /usr/lib/python2.5/site-packages/pygst.pth
+  /usr/lib/python2.5/site-packages/pygst.py
+  /usr/share/doc/Cygwin/python-gstreamer010-0.10.7.1.README
+  /usr/share/doc/python-gstreamer010-0.10.7.1/AUTHORS
+  /usr/share/doc/python-gstreamer010-0.10.7.1/COPYING
+  /usr/share/doc/python-gstreamer010-0.10.7.1/ChangeLog
+  /usr/share/doc/python-gstreamer010-0.10.7.1/INSTALL
+  /usr/share/doc/python-gstreamer010-0.10.7.1/NEWS
+  /usr/share/doc/python-gstreamer010-0.10.7.1/README
+  /usr/share/doc/python-gstreamer010-0.10.7.1/TODO
+  /usr/share/gst-python/0.10/defs/base.defs
+  /usr/share/gst-python/0.10/defs/gst-extrafuncs.defs
+  /usr/share/gst-python/0.10/defs/gst-types.defs
+  /usr/share/gst-python/0.10/defs/libs.defs
+  /usr/share/gst-python/0.10/examples/audio-controller.py
+  /usr/share/gst-python/0.10/examples/audioconcat.py
+  /usr/share/gst-python/0.10/examples/bps.py
+  /usr/share/gst-python/0.10/examples/cp.py
+  /usr/share/gst-python/0.10/examples/debugslider.py
+  /usr/share/gst-python/0.10/examples/decodebin.py
+  /usr/share/gst-python/0.10/examples/f2f.py
+  /usr/share/gst-python/0.10/examples/filesrc.py
+  /usr/share/gst-python/0.10/examples/fvumeter.py
+  /usr/share/gst-python/0.10/examples/gst-discover
+  /usr/share/gst-python/0.10/examples/gstfile.py
+  /usr/share/gst-python/0.10/examples/mixer.py
+  /usr/share/gst-python/0.10/examples/pipeline-tester
+  /usr/share/gst-python/0.10/examples/play.py
+  /usr/share/gst-python/0.10/examples/remuxer.py
+  /usr/share/gst-python/0.10/examples/sinkelement.py
+  /usr/share/gst-python/0.10/examples/vumeter.py
+
+------------------
+
+Port Notes:
+
+----- version 0.10.7.1-1 -----
+Initial release for Cygwin.
+
+
+Cygwin port maintained by:
+http://cygwinports.dotsrc.org/
