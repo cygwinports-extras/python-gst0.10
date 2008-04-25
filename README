@@ -3,23 +3,22 @@ python-gstreamer010
 Python bindings for the GStreamer 0.10 libraries
 
 Runtime requirements:
-  cygwin-1.5.25-7
-  glib2-2.14.5-1
-  gstreamer010-0.10.16-1
-  gstreamer010-plugins-base-0.10.16-1
-  python-2.5.1-3
+  cygwin-1.5.25-11
+  glib2-2.14.6-1
+  gstreamer010-0.10.19-1
+  gstreamer010-plugins-base-0.10.19-1
+  python-2.5.2-1
   python-gobject2-2.14.1-1
 
 Build requirements:
 (besides corresponding -devel packages)
-  cygwin-1.5.25-7
   autoconf2.5-2.61-1
-  automake1.10-1.10-1
+  automake1.10-1.10.1-1
   binutils-20060817-1
-  cygport-0.3.7-1
+  cygport-0.3.9-1
   gawk-3.1.6-1
   gcc-core-3.4.4-3
-  libtool1.5-1.5.23a-2
+  libtool-2.2.2-2
   make-3.81-1
   pkg-config-0.21-1
   sed-4.1.5-2
@@ -33,15 +32,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack python-gstreamer010-0.10.10-1-src.tar.bz2
+  unpack python-gstreamer010-0.10.11-1-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./python-gstreamer010-0.10.10-1.cygport all
+  cygport ./python-gstreamer010-0.10.11-1.cygport all
 
 This will create:
-  /usr/src/python-gstreamer010-0.10.10-1-src.tar.bz2
-  /usr/src/python-gstreamer010-0.10.10-1.tar.bz2
+  /usr/src/python-gstreamer010-0.10.11-1-src.tar.bz2
+  /usr/src/python-gstreamer010-0.10.11-1.tar.bz2
 
 -------------------------------------------
 
@@ -80,14 +79,13 @@ Files included in the binary package:
   /usr/lib/python2.5/site-packages/gst-0.10/gst/pbutils.la
   /usr/lib/python2.5/site-packages/pygst.pth
   /usr/lib/python2.5/site-packages/pygst.py
-  /usr/share/doc/Cygwin/python-gstreamer010-0.10.10.README
-  /usr/share/doc/python-gstreamer010-0.10.10/AUTHORS
-  /usr/share/doc/python-gstreamer010-0.10.10/COPYING
-  /usr/share/doc/python-gstreamer010-0.10.10/ChangeLog
-  /usr/share/doc/python-gstreamer010-0.10.10/INSTALL
-  /usr/share/doc/python-gstreamer010-0.10.10/NEWS
-  /usr/share/doc/python-gstreamer010-0.10.10/README
-  /usr/share/doc/python-gstreamer010-0.10.10/TODO
+  /usr/share/doc/python-gstreamer010-0.10.11/AUTHORS
+  /usr/share/doc/python-gstreamer010-0.10.11/COPYING
+  /usr/share/doc/python-gstreamer010-0.10.11/ChangeLog
+  /usr/share/doc/python-gstreamer010-0.10.11/INSTALL
+  /usr/share/doc/python-gstreamer010-0.10.11/NEWS
+  /usr/share/doc/python-gstreamer010-0.10.11/README
+  /usr/share/doc/python-gstreamer010-0.10.11/TODO
   /usr/share/gst-python/0.10/defs/base.defs
   /usr/share/gst-python/0.10/defs/gst-extrafuncs.defs
   /usr/share/gst-python/0.10/defs/gst-types.defs
@@ -114,6 +112,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.10.11-1 -----
+Version bump.
 
 ----- version 0.10.10-1 -----
 Version bump.

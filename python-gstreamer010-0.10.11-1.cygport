@@ -1,0 +1,18 @@
+ORIG_PN="gst-python"
+CVS_BRANCH="RELEASE-${PV//./_}"
+inherit pygtk gstreamer cvs
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	# since gst-python releases lag core releases, an old common/
+	# directory is fetched, but we need the current one.
+	rm -fr common/
+	gstreamer_cvs_checkout common
+}
+
+src_compile() {
+	cd ${S}
+	gstreamer_autoreconf
+	cd ${B}
+	pygtk_compile
+}
