@@ -1,0 +1,13 @@
+ORIG_PN="gst-python"
+CVS_DATE="2008-10-04"
+inherit pygtk gstreamer cvs
+
+PATCH_URI="0.10.11-DLFCN.patch
+           0.10.11-no-undefined.patch"
+
+src_compile() {
+	cd ${S}
+	gstreamer_autoreconf
+	cd ${B}
+	pygtk_compile
+}

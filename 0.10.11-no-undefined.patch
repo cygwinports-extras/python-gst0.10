@@ -1,0 +1,38 @@
+--- origsrc/gst-python/gst/gst.override	2008-02-29 06:37:43.000000000 -0600
++++ src/gst-python/gst/gst.override	2008-04-25 08:11:32.921875000 -0500
+@@ -584,6 +584,24 @@
+     return xml;
+  }
+ 
++#ifdef G_WITH_CYGWIN
++PyObject *
++libxml_xmlDocPtrWrap(xmlDocPtr doc)
++{
++    PyObject *ret;
++
++    if (doc == NULL) {
++        Py_INCREF(Py_None);
++        return (Py_None);
++    }
++    /* TODO: look at deallocation */
++    ret =
++        PyCObject_FromVoidPtrAndDesc((void *) doc, (char *) "xmlDocPtr",
++                                     NULL);
++    return (ret);
++}
++#endif
++
+ static int
+ _wrap_gst_xml_new(PyGObject *self)
+ {
+--- origsrc/gst-python/testsuite/Makefile.am	2008-01-01 07:22:21.000000000 -0600
++++ src/gst-python/testsuite/Makefile.am	2008-04-25 08:11:32.937500000 -0500
+@@ -8,7 +8,7 @@
+ linked_LIBS = testhelper.la
+ 
+ testhelper_la_LDFLAGS = -module -avoid-version
+-testhelper_la_LIBADD = $(GLIB_LIBS)
++testhelper_la_LIBADD = $(GST_LIBS)
+ testhelper_la_CFLAGS = $(PYGOBJECT_CFLAGS)
+ testhelper_la_SOURCES = \
+ 	testhelpermodule.c \
