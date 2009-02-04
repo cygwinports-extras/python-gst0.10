@@ -1,15 +1,19 @@
-python-gstreamer010
+python-gst0.10
 ------------------------------------------
 Python bindings for the GStreamer 0.10 libraries
 
 Runtime requirements:
   cygwin-1.5.25-15
-  glib2-2.16.6-1
-  gstreamer010-0.10.21-1
-  gstreamer010-plugins-base-0.10.21-1
-  python-2.5.2-3
-  python-gobject2-2.14.2-1
-  python-libxml2-2.6.32-2
+  libglib2.0_0-2.18.4-1
+  libgstaudio0.10_0-0.10.22-1
+  libgstinterfaces0.10_0-0.10.22-1
+  libgstpbutils0.10_0-0.10.22-1
+  libgstreamer0.10_0-0.10.22-1
+  libgsttag0.10_0-0.10.22-1
+  libgstvideo0.10_0-0.10.22-1
+  python-2.5.4-1
+  python-gobject2-2.16.0-1
+  python-libxml2-2.7.3-1
 
 Build requirements:
 (besides corresponding -devel packages)
@@ -33,15 +37,15 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack python-gstreamer010-0.10.13-1-src.tar.bz2
+  unpack python-gst0.10-0.10.14-1-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./python-gstreamer010-0.10.13-1.cygport all
+  cygport ./python-gst0.10-0.10.14-1.cygport all
 
 This will create:
-  /usr/src/python-gstreamer010-0.10.13-1-src.tar.bz2
-  /usr/src/python-gstreamer010-0.10.13-1.tar.bz2
+  /usr/src/python-gst0.10-0.10.14-1-src.tar.bz2
+  /usr/src/python-gst0.10-0.10.14-1.tar.bz2
 
 -------------------------------------------
 
@@ -53,6 +57,8 @@ Files included in the binary package:
   /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.pyo
   /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.dll
   /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.la
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/audio.dll
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/audio.la
   /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.py
   /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyc
   /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyo
@@ -78,20 +84,29 @@ Files included in the binary package:
   /usr/lib/python2.5/site-packages/gst-0.10/gst/interfaces.la
   /usr/lib/python2.5/site-packages/gst-0.10/gst/pbutils.dll
   /usr/lib/python2.5/site-packages/gst-0.10/gst/pbutils.la
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/tag.dll
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/tag.la
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/video.dll
+  /usr/lib/python2.5/site-packages/gst-0.10/gst/video.la
+  /usr/lib/python2.5/site-packages/gstoption.dll
+  /usr/lib/python2.5/site-packages/gstoption.la
   /usr/lib/python2.5/site-packages/pygst.pth
   /usr/lib/python2.5/site-packages/pygst.py
-  /usr/share/doc/python-gstreamer010-0.10.13/AUTHORS
-  /usr/share/doc/python-gstreamer010-0.10.13/COPYING
-  /usr/share/doc/python-gstreamer010-0.10.13/ChangeLog
-  /usr/share/doc/python-gstreamer010-0.10.13/INSTALL
-  /usr/share/doc/python-gstreamer010-0.10.13/NEWS
-  /usr/share/doc/python-gstreamer010-0.10.13/README
-  /usr/share/doc/python-gstreamer010-0.10.13/TODO
+  /usr/share/doc/python-gst0.10-0.10.14/AUTHORS
+  /usr/share/doc/python-gst0.10-0.10.14/COPYING
+  /usr/share/doc/python-gst0.10-0.10.14/ChangeLog
+  /usr/share/doc/python-gst0.10-0.10.14/INSTALL
+  /usr/share/doc/python-gst0.10-0.10.14/NEWS
+  /usr/share/doc/python-gst0.10-0.10.14/README
+  /usr/share/doc/python-gst0.10-0.10.14/TODO
+  /usr/share/gst-python/0.10/defs/audio.defs
   /usr/share/gst-python/0.10/defs/base.defs
   /usr/share/gst-python/0.10/defs/gst-extrafuncs.defs
   /usr/share/gst-python/0.10/defs/gst-types.defs
   /usr/share/gst-python/0.10/defs/libs.defs
   /usr/share/gst-python/0.10/defs/pbutils.defs
+  /usr/share/gst-python/0.10/defs/tag.defs
+  /usr/share/gst-python/0.10/defs/video.defs
   /usr/share/gst-python/0.10/examples/audio-controller.py
   /usr/share/gst-python/0.10/examples/audioconcat.py
   /usr/share/gst-python/0.10/examples/bps.py
@@ -113,6 +128,9 @@ Files included in the binary package:
 ------------------
 
 Port Notes:
+
+----- version 0.10.14-1 -----
+Version bump.
 
 ----- version 0.10.13-1 -----
 Version bump.
