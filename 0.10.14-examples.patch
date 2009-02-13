@@ -1,0 +1,44 @@
+--- origsrc/gst-python-0.10.14/examples/audio-controller.py	2006-11-22 11:31:02.000000000 -0600
++++ src/gst-python-0.10.14/examples/audio-controller.py	2009-02-04 02:42:25.644375000 -0600
+@@ -15,7 +15,7 @@ import time
+ def main():
+     pipeline = gst.Pipeline("audiocontroller")
+     src = gst.element_factory_make("audiotestsrc", "src")
+-    sink = gst.element_factory_make("alsasink", "sink")
++    sink = gst.element_factory_make("autoaudiosink", "sink")
+     pipeline.add(src, sink)
+     src.link(sink)
+ 
+--- origsrc/gst-python-0.10.14/examples/decodebin.py	2006-10-20 04:47:16.000000000 -0500
++++ src/gst-python-0.10.14/examples/decodebin.py	2009-02-04 02:41:40.800625000 -0600
+@@ -45,7 +45,7 @@ class Decodebin:
+ 		self.dec = gst.element_factory_make('decodebin')
+ 		self.conv = gst.element_factory_make('audioconvert')
+ 		self.rsmpl = gst.element_factory_make('audioresample')
+-		self.sink = gst.element_factory_make('alsasink')
++		self.sink = gst.element_factory_make('autoaudiosink')
+ 		
+ 		# Set 'location' property on filesrc
+ 		self.src.set_property('location', location)
+--- origsrc/gst-python-0.10.14/examples/mixer.py	2007-01-17 05:22:04.000000000 -0600
++++ src/gst-python-0.10.14/examples/mixer.py	2009-02-04 02:44:51.535000000 -0600
+@@ -6,7 +6,7 @@ import sys
+ import gst
+ import gst.interfaces
+ 
+-pipeline = "alsasrc"
++pipeline = "osssrc"
+ if sys.argv[1:]:
+     pipeline = " ".join(sys.argv[1:])
+ a = gst.element_factory_make(pipeline)
+--- origsrc/gst-python-0.10.14/examples/vumeter.py	2006-02-20 12:07:59.000000000 -0600
++++ src/gst-python-0.10.14/examples/vumeter.py	2009-02-04 02:43:28.160000000 -0600
+@@ -88,7 +88,7 @@ class Window(gtk.Dialog):
+     def run(self):
+         try:
+             self.set_sensitive(False)
+-            s = 'alsasrc ! level message=true ! fakesink'
++            s = 'osssrc ! level message=true ! fakesink'
+             pipeline = gst.parse_launch(s)
+             self.set_sensitive(True)
+             pipeline.get_bus().add_signal_watch()
