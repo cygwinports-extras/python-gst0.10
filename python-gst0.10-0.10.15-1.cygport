@@ -2,7 +2,7 @@ ORIG_PN="gst-python"
 inherit pygtk gstreamer
 
 SRC_URI+=" http://cgit.freedesktop.org/gstreamer/gst-python/plain/autogen.sh"
-PATCH_URI="0.10.11-no-undefined.patch
+PATCH_URI="0.10.15-no-undefined.patch
            0.10.14-examples.patch"
 
 src_compile() {
@@ -10,4 +10,10 @@ src_compile() {
 	gstreamer_autoreconf
 	cd ${B}
 	pygtk_compile
+}
+
+src_install() {
+	cd ${B}
+	cyginstall
+	python_optimize
 }
