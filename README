@@ -3,28 +3,28 @@ python-gst0.10
 Python bindings for the GStreamer 0.10 libraries
 
 Runtime requirements:
-  cygwin-1.7.0-48
+  cygwin-1.7.0-60
   libgcc1-4.3.2-2
-  libglib2.0_0-2.20.3-1
-  libgstaudio0.10_0-0.10.23-1
-  libgstinterfaces0.10_0-0.10.23-1
-  libgstpbutils0.10_0-0.10.23-1
-  libgstreamer0.10_0-0.10.23-1
-  libgsttag0.10_0-0.10.23-1
-  libgstvideo0.10_0-0.10.23-1
+  libglib2.0_0-2.20.5-1
+  libgstaudio0.10_0-0.10.24-1
+  libgstinterfaces0.10_0-0.10.24-1
+  libgstpbutils0.10_0-0.10.24-1
+  libgstreamer0.10_0-0.10.24-1
+  libgsttag0.10_0-0.10.24-1
+  libgstvideo0.10_0-0.10.24-1
   python-2.5.4-10
-  python-gobject2-2.16.1-10
-  python-libxml2-2.7.3-10
+  python-gobject2.0-2.18.0-1
+  python-libxml2-2.7.3-11
 
 Build requirements:
 (besides corresponding -devel packages)
   autoconf2.5-2.63-10
   automake1.10-1.10.2-10
-  binutils-20080624-2
-  cygport-0.9.7-1
-  gawk-3.1.6-2
+  binutils-2.19.51-1
+  cygport-0.9.9-1
+  gawk-3.1.7-1
   gcc4-core-4.3.2-2
-  libtool-2.2.7a-12
+  libtool-2.2.7a-14
   make-3.81-2
   pkg-config-0.23b-10
   sed-4.1.5-2
@@ -38,100 +38,24 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack python-gst0.10-0.10.15-1-src.tar.bz2
+  unpack python-gst0.10-0.10.16-1-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./python-gst0.10-0.10.15-1.cygport all
+  cygport ./python-gst0.10-0.10.16-1.cygport all
 
 This will create:
-  /usr/src/python-gst0.10-0.10.15-1-src.tar.bz2
-  /usr/src/python-gst0.10-0.10.15-1.tar.bz2
+  /usr/src/python-gst0.10-0.10.16-1-src.tar.bz2
+  /usr/src/python-gst0.10-0.10.16-1.tar.bz2
+  /usr/src/python-pygst-0.10.16-1.tar.bz2
 
 -------------------------------------------
 
-Files included in the binary package:
-
-  /usr/lib/gstreamer-0.10/cyggstpython.dll
-  /usr/lib/gstreamer-0.10/libgstpython.la
-  /usr/lib/pkgconfig/gst-python-0.10.pc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/__init__.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/_gst.la
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/audio.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/audio.la
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/__init__.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/discoverer.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/jukebox.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/leveller.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/pygobject.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/sources.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.py
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.pyc
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/extend/utils.pyo
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/interfaces.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/interfaces.la
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/pbutils.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/pbutils.la
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/tag.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/tag.la
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/video.dll
-  /usr/lib/python2.5/site-packages/gst-0.10/gst/video.la
-  /usr/lib/python2.5/site-packages/gstoption.dll
-  /usr/lib/python2.5/site-packages/gstoption.la
-  /usr/lib/python2.5/site-packages/pygst.pth
-  /usr/lib/python2.5/site-packages/pygst.py
-  /usr/lib/python2.5/site-packages/pygst.pyc
-  /usr/lib/python2.5/site-packages/pygst.pyo
-  /usr/share/doc/python-gst0.10/AUTHORS
-  /usr/share/doc/python-gst0.10/COPYING
-  /usr/share/doc/python-gst0.10/ChangeLog
-  /usr/share/doc/python-gst0.10/NEWS
-  /usr/share/doc/python-gst0.10/README
-  /usr/share/doc/python-gst0.10/TODO
-  /usr/share/gst-python/0.10/defs/audio.defs
-  /usr/share/gst-python/0.10/defs/base.defs
-  /usr/share/gst-python/0.10/defs/gst-extrafuncs.defs
-  /usr/share/gst-python/0.10/defs/gst-types.defs
-  /usr/share/gst-python/0.10/defs/libs.defs
-  /usr/share/gst-python/0.10/defs/pbutils.defs
-  /usr/share/gst-python/0.10/defs/tag.defs
-  /usr/share/gst-python/0.10/defs/video.defs
-  /usr/share/gst-python/0.10/examples/audio-controller.py
-  /usr/share/gst-python/0.10/examples/audioconcat.py
-  /usr/share/gst-python/0.10/examples/bps.py
-  /usr/share/gst-python/0.10/examples/cp.py
-  /usr/share/gst-python/0.10/examples/debugslider.py
-  /usr/share/gst-python/0.10/examples/decodebin.py
-  /usr/share/gst-python/0.10/examples/f2f.py
-  /usr/share/gst-python/0.10/examples/filesrc.py
-  /usr/share/gst-python/0.10/examples/fvumeter.py
-  /usr/share/gst-python/0.10/examples/gst-discover
-  /usr/share/gst-python/0.10/examples/gstfile.py
-  /usr/share/gst-python/0.10/examples/mixer.py
-  /usr/share/gst-python/0.10/examples/pipeline-tester
-  /usr/share/gst-python/0.10/examples/play.py
-  /usr/share/gst-python/0.10/examples/remuxer.py
-  /usr/share/gst-python/0.10/examples/sinkelement.py
-  /usr/share/gst-python/0.10/examples/vumeter.py
-
-------------------
-
 Port Notes:
+
+----- version 0.10.16-1 -----
+Version bump.
+Separated pygst version selector into its own package.
 
 ----- version 0.10.15-1 -----
 Version bump.

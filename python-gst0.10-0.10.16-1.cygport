@@ -5,6 +5,16 @@ SRC_URI+=" http://cgit.freedesktop.org/gstreamer/gst-python/plain/autogen.sh"
 PATCH_URI="0.10.15-no-undefined.patch
            0.10.14-examples.patch"
 
+PKG_NAMES="${PN} python-pygst"
+PKG_HINTS="setup version"
+python_gst0_10_CONTENTS="--exclude=pygst.* usr/"
+python_pygst_CONTENTS="${PYTHON_SITELIB#/}/pygst.*"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	chmod +x autogen.sh
+}
+
 src_compile() {
 	cd ${S}
 	gstreamer_autoreconf
