@@ -1,0 +1,16 @@
+--- origsrc/gst-python-0.10.17/Makefile.am	2009-04-21 15:07:24.000000000 -0500
++++ src/gst-python-0.10.17/Makefile.am	2009-11-01 20:16:45.771114900 -0600
+@@ -9,10 +9,11 @@ include $(top_srcdir)/common/win32.mak
+ 
+ ACLOCAL_AMFLAGS = -I common/m4
+ 
+-pyexec_LTLIBRARIES = 
++pkgpyexecdir = $(pyexecdir)/gst-$(GST_MAJORMINOR)
++pkgpyexec_LTLIBRARIES = 
+ 
+ if HAVE_PYGOBJECT_2_16
+-pyexec_LTLIBRARIES += gstoption.la
++pkgpyexec_LTLIBRARIES += gstoption.la
+ endif
+ 
+ # GStreamer option bindings

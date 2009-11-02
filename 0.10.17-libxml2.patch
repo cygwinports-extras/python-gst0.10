@@ -1,0 +1,27 @@
+--- origsrc/gst-python-0.10.17/gst/gst.override	2009-07-14 09:45:36.000000000 -0500
++++ src/gst-python-0.10.17/gst/gst.override	2009-11-01 18:42:33.555742800 -0600
+@@ -576,6 +576,24 @@ override gst_xml_new noargs
+ extern PyObject * libxml_xmlDocPtrWrap(xmlDocPtr doc);
+ extern PyObject * libxml_xmlNodePtrWrap(xmlNodePtr node);
+  
++#ifdef G_WITH_CYGWIN
++PyObject *
++libxml_xmlDocPtrWrap(xmlDocPtr doc)
++{
++    PyObject *ret;
++
++    if (doc == NULL) {
++        Py_INCREF(Py_None);
++        return (Py_None);
++    }
++    /* TODO: look at deallocation */
++    ret =
++        PyCObject_FromVoidPtrAndDesc((void *) doc, (char *) "xmlDocPtr",
++                                     NULL);
++    return (ret);
++}
++#endif
++
+ /* libxml2 available check */
+ static PyObject *
+ _gst_get_libxml2_module(void)

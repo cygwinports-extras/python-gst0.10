@@ -3,27 +3,27 @@ python-gst0.10
 Python bindings for the GStreamer 0.10 libraries
 
 Runtime requirements:
-  cygwin-1.7.0-60
-  libgcc1-4.3.2-2
-  libglib2.0_0-2.20.5-1
-  libgstaudio0.10_0-0.10.24-1
-  libgstinterfaces0.10_0-0.10.24-1
-  libgstpbutils0.10_0-0.10.24-1
-  libgstreamer0.10_0-0.10.24-1
-  libgsttag0.10_0-0.10.24-1
-  libgstvideo0.10_0-0.10.24-1
+  cygwin-1.7.0-62
+  libgcc1-4.3.4-1
+  libglib2.0_0-2.22.2-1
+  libgstaudio0.10_0-0.10.25-1
+  libgstinterfaces0.10_0-0.10.25-1
+  libgstpbutils0.10_0-0.10.25-1
+  libgstreamer0.10_0-0.10.25-1
+  libgsttag0.10_0-0.10.25-1
+  libgstvideo0.10_0-0.10.25-1
   python-2.5.4-10
-  python-gobject2.0-2.18.0-1
-  python-libxml2-2.7.3-11
+  python-gobject2.0-2.20.0-1
+  python-libxml2-2.7.4-1
 
 Build requirements:
 (besides corresponding -devel packages)
   autoconf2.5-2.63-10
   automake1.10-1.10.2-10
   binutils-2.19.51-1
-  cygport-0.9.9-1
+  cygport-0.9.10-1
   gawk-3.1.7-1
-  gcc4-core-4.3.2-2
+  gcc4-core-4.3.4-1
   libtool-2.2.7a-14
   make-3.81-2
   pkg-config-0.23b-10
@@ -38,20 +38,23 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack python-gst0.10-0.10.16-1-src.tar.bz2
+  unpack python-gst0.10-0.10.17-1-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./python-gst0.10-0.10.16-1.cygport all
+  cygport ./python-gst0.10-0.10.17-1.cygport all
 
 This will create:
-  /usr/src/python-gst0.10-0.10.16-1-src.tar.bz2
-  /usr/src/python-gst0.10-0.10.16-1.tar.bz2
-  /usr/src/python-pygst-0.10.16-1.tar.bz2
+  /usr/src/python-gst0.10-0.10.17-1-src.tar.bz2
+  /usr/src/python-gst0.10-0.10.17-1.tar.bz2
+  /usr/src/python-pygst-0.10.17-1.tar.bz2
 
 -------------------------------------------
 
 Port Notes:
+
+----- version 0.10.17-1 -----
+Version bump.
 
 ----- version 0.10.16-1 -----
 Version bump.

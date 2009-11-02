@@ -1,0 +1,90 @@
+--- origsrc/gst-python-0.10.17/gst/Makefile.am	2009-09-16 16:01:25.000000000 -0500
++++ src/gst-python-0.10.17/gst/Makefile.am	2009-11-01 19:29:34.358862300 -0600
+@@ -50,7 +50,7 @@ GEN_FILES = arg-types.py gst-types.defs 
+ # GStreamer bindings
+ _gst_la_CFLAGS = $(common_cflags)
+ _gst_la_LIBADD = $(common_libadd) $(GST_BASE_LIBS)
+-_gst_la_LDFLAGS = $(common_ldflags) -export-symbols-regex "^(init_gst|_PyGObject_API|pygstminiobject_).*" \
++_gst_la_LDFLAGS = $(common_ldflags) -export-symbols-regex "^(init_gst|_PyGObject_API).*" \
+ 	$(GST_BASE_LIBS) $(GST_CONTROLLER_LIBS) $(GST_NET_LIBS) $(GST_DP_LIBS)
+ _gst_la_SOURCES = 		\
+ 	gst-argtypes.c 		\
+@@ -89,7 +89,7 @@ interfaces_la_CFLAGS = $(common_cflags) 
+ interfaces_la_LIBADD = $(common_libadd) -lgstinterfaces-$(GST_MAJORMINOR) 
+ interfaces_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(initinterface|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+-interfaces_la_SOURCES = interfacesmodule.c
++interfaces_la_SOURCES = interfacesmodule.c pygstminiobject.c
+ nodist_interfaces_la_SOURCES = interfaces.c
+ INTERFACES_OVERRIDES = interfaces.override xoverlay.override
+ INTERFACES_DEFS = interfaces.defs xoverlay.defs
+@@ -102,7 +102,7 @@ pbutils_la_CFLAGS = $(common_cflags) $(G
+ pbutils_la_LIBADD = $(common_libadd) $(GST_PLUGINS_BASE_LIBS) -lgstpbutils-0.10
+ pbutils_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(initpbutils|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+-pbutils_la_SOURCES = pbutilsmodule.c gst-argtypes.c
++pbutils_la_SOURCES = pbutilsmodule.c gst-argtypes.c pygstminiobject.c
+ nodist_pbutils_la_SOURCES = pbutils.c
+ PBUTILS_OVERRIDES = pbutils.override
+ PBUTILS_DEFS = pbutils.defs
+@@ -126,7 +126,7 @@ if HAVE_GST_AUDIO
+  audio_la_LIBADD = $(common_libadd) $(GST_PLUGINS_BASE_LIBS) -lgstaudio-0.10
+  audio_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(initaudio|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+- audio_la_SOURCES = audiomodule.c gst-argtypes.c
++ audio_la_SOURCES = audiomodule.c gst-argtypes.c pygstminiobject.c
+  nodist_audio_la_SOURCES = audio.c
+ audio.c: $(AUDIO_DEFS) $(AUDIO_OVERRIDES) $(GEN_FILES)
+ 
+@@ -148,7 +148,7 @@ if HAVE_GST_VIDEO
+  video_la_LIBADD = $(common_libadd) $(GST_PLUGINS_BASE_LIBS) -lgstvideo-0.10
+  video_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(initvideo|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+- video_la_SOURCES = videomodule.c gst-argtypes.c
++ video_la_SOURCES = videomodule.c gst-argtypes.c pygstminiobject.c
+  nodist_video_la_SOURCES = video.c
+ video.c: $(VIDEO_DEFS) $(VIDEO_OVERRIDES) $(GEN_FILES)
+ 
+@@ -170,7 +170,7 @@ if HAVE_GST_TAG
+  tag_la_LIBADD = $(common_libadd) $(GST_PLUGINS_BASE_LIBS) -lgsttag-0.10
+  tag_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(inittag|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+- tag_la_SOURCES = tagmodule.c gst-argtypes.c
++ tag_la_SOURCES = tagmodule.c gst-argtypes.c pygstminiobject.c
+  nodist_tag_la_SOURCES = tag.c
+ tag.c: $(TAG_DEFS) $(TAG_OVERRIDES) $(GEN_FILES)
+ 
+--- origsrc/gst-python-0.10.17/gst/interfaces.override	2009-09-16 16:01:25.000000000 -0500
++++ src/gst-python-0.10.17/gst/interfaces.override	2009-11-01 19:37:40.330909600 -0600
+@@ -43,6 +43,9 @@ headers
+ #include <gst/interfaces/streamvolume.h>
+ #endif
+ 
++GST_DEBUG_CATEGORY_EXTERN (pygst_debug);
++#define GST_CAT_DEFAULT pygst_debug
++
+ %%
+ modulename gst.interfaces
+ %%
+--- origsrc/gst-python-0.10.17/gst/interfacesmodule.c	2009-04-15 15:16:30.000000000 -0500
++++ src/gst-python-0.10.17/gst/interfacesmodule.c	2009-11-01 19:37:50.673727600 -0600
+@@ -28,6 +28,8 @@
+ #include <pygobject.h>
+ #include <gst/gst.h>
+ 
++GST_DEBUG_CATEGORY (pygst_debug);
++
+ void pyinterfaces_register_classes (PyObject *d);
+ void pyinterfaces_add_constants(PyObject *module, const gchar *strip_prefix);
+ 		
+--- origsrc/gst-python-0.10.17/testsuite/Makefile.am	2009-09-11 10:36:36.000000000 -0500
++++ src/gst-python-0.10.17/testsuite/Makefile.am	2009-11-01 19:28:07.950311600 -0600
+@@ -8,7 +8,7 @@ noinst_LTLIBRARIES = testhelper.la
+ linked_LIBS = testhelper.la
+ 
+ testhelper_la_LDFLAGS = -module -avoid-version
+-testhelper_la_LIBADD = $(GLIB_LIBS)
++testhelper_la_LIBADD = $(GST_LIBS)
+ testhelper_la_CFLAGS = $(PYGOBJECT_CFLAGS)
+ testhelper_la_SOURCES = \
+ 	testhelpermodule.c \
