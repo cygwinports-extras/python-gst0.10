@@ -17,6 +17,9 @@ src_unpack_hook() {
 	chmod +x autogen.sh
 }
 
+# fixes g_module_open location of libpython
+MAKEOPTS+=" PYTHON_LIB_LOC=/usr/bin"
+
 src_compile() {
 	cd ${S}
 	gstreamer_autoreconf
