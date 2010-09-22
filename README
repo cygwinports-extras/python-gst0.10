@@ -3,12 +3,12 @@ python-gst0.10
 Python bindings for the GStreamer 0.10 libraries
 
 Runtime requirements:
-  cygwin-1.7.5-1
-  libgcc1-4.3.4-3
-  libglib2.0_0-2.22.4-2
-  libgstinterfaces0.10_0-0.10.28-1
-  libgstreamer0.10_0-0.10.28-1
-  python-2.6.5-1
+  cygwin-1.7.7-1
+  libgcc1-4.5.0-1
+  libglib2.0_0-2.24.1-1
+  libgstinterfaces0.10_0-0.10.30-1
+  libgstreamer0.10_0-0.10.30-1
+  python-2.6.5-2
   python-gobject2.0-2.20.0-2
   python-libxml2-2.7.7-1
 
@@ -16,10 +16,10 @@ Build requirements:
 (besides corresponding -devel packages)
   autoconf2.5-2.65-1
   automake1.11-1.11.1-1
-  binutils-2.20.51-1
-  cygport-0.9.83-1
+  binutils-2.20.51-2
+  cygport-0.10.0-1
   gawk-3.1.7-1
-  gcc4-core-4.3.4-3
+  gcc4-core-4.5.0-1
   libtool-2.2.7a-15
   make-3.81-2
   pkg-config-0.23b-10
@@ -34,20 +34,23 @@ Canonical download:
 -------------------------------------------
 
 Build instructions:
-  unpack python-gst0.10-0.10.18-X-src.tar.bz2
+  unpack python-gst0.10-0.10.19-X-src.tar.bz2
     if you use setup to install this src package, it will be
 	 unpacked under /usr/src automatically
   cd /usr/src
-  cygport ./python-gst0.10-0.10.18-X.cygport all
+  cygport ./python-gst0.10-0.10.19-X.cygport all
 
 This will create:
-  /usr/src/python-gst0.10-0.10.18-X-src.tar.bz2
-  /usr/src/python-gst0.10-0.10.18-X.tar.bz2
-  /usr/src/python-pygst-0.10.18-X.tar.bz2
+  /usr/src/python-gst0.10-0.10.19-X-src.tar.bz2
+  /usr/src/python-gst0.10-0.10.19-X.tar.bz2
+  /usr/src/python-pygst-0.10.19-X.tar.bz2
 
 -------------------------------------------
 
 Port Notes:
+
+----- version 0.10.19-1 -----
+Version bump.
 
 ----- version 0.10.18-2 -----
 Rebuilt for Python 2.6.
