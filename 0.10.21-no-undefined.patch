@@ -1,5 +1,5 @@
---- origsrc/gst-python-0.10.20/gst/pbutils.override	2010-11-08 12:00:26.000000000 -0600
-+++ src/gst-python-0.10.20/gst/pbutils.override	2010-12-13 00:37:03.088986800 -0600
+--- origsrc/gst-python-0.10.21/gst/pbutils.override	2011-02-01 13:33:07.041234200 -0600
++++ src/gst-python-0.10.21/gst/pbutils.override	2011-02-01 13:28:36.895563100 -0600
 @@ -30,7 +30,6 @@ headers
  #include <gst/gst.h>
  
@@ -8,9 +8,9 @@
  GST_DEBUG_CATEGORY_EXTERN (pygst_debug);
  #define GST_CAT_DEFAULT pygst_debug
  
---- origsrc/gst-python-0.10.20/gst/pygst-private.h	2010-10-19 08:39:06.000000000 -0500
-+++ src/gst-python-0.10.20/gst/pygst-private.h	2010-12-13 00:43:26.330037300 -0600
-@@ -38,6 +38,10 @@ PyObject* pygst_iterator_new(GstIterator
+--- origsrc/gst-python-0.10.21/gst/pygst-private.h	2011-02-01 13:33:07.056834200 -0600
++++ src/gst-python-0.10.21/gst/pygst-private.h	2011-02-01 13:32:39.834786700 -0600
+@@ -38,6 +38,12 @@ PyObject* pygst_iterator_new(GstIterator
  PyObject *
  pygstminiobject_new(GstMiniObject *obj);
  
@@ -19,31 +19,35 @@
 +                   GType gtype, PyTypeObject *type,
 +                   PyObject *bases);
  
++void
++pygstminiobject_register_wrapper(PyObject *self);
  
  #endif	/* _PYGST_PRIVATE_H_ */
---- origsrc/gst-python-0.10.20/gst/pygst.h	2010-11-09 04:01:11.000000000 -0600
-+++ src/gst-python-0.10.20/gst/pygst.h	2010-12-13 00:42:51.857774000 -0600
-@@ -33,6 +33,9 @@ struct _PyGst_Functions {
+--- origsrc/gst-python-0.10.21/gst/pygst.h	2011-02-01 13:33:07.056834200 -0600
++++ src/gst-python-0.10.21/gst/pygst.h	2011-02-01 13:32:03.034322600 -0600
+@@ -33,6 +33,10 @@ struct _PyGst_Functions {
    GstCaps*	(*caps_from_pyobject) (PyObject *object, gboolean *copy);
    PyObject*	(*iterator_new) (GstIterator *iter);
    PyObject*     (*miniobject_new) (GstMiniObject *obj);
 +  void      (*miniobject_register_class) (PyObject *dict, const gchar *type_name,
 +                   GType gtype, PyTypeObject *type,
 +                   PyObject *bases);
++  void      (*miniobject_register_wrapper) (PyObject *self);
  };
  
  #ifndef _INSIDE_PYGST_
-@@ -46,6 +49,7 @@ struct _PyGst_Functions *_PyGst_API;
+@@ -46,6 +50,8 @@ struct _PyGst_Functions *_PyGst_API;
  #define pygst_caps_from_pyobject (_PyGst_API->caps_from_pyobject)
  #define pygst_iterator_new (_PyGst_API->iterator_new)
  #define pygstminiobject_new (_PyGst_API->miniobject_new)
 +#define pygstminiobject_register_class (_PyGst_API->miniobject_register_class)
++#define pygstminiobject_register_wrapper (_PyGst_API->miniobject_register_wrapper)
  
  static inline PyObject *
  pygst_init(void)
---- origsrc/gst-python-0.10.20/gst/pygstminiobject.h	2010-10-19 08:39:06.000000000 -0500
-+++ src/gst-python-0.10.20/gst/pygstminiobject.h	2010-12-13 00:43:36.357955600 -0600
-@@ -31,10 +31,6 @@ typedef struct {
+--- origsrc/gst-python-0.10.21/gst/pygstminiobject.h	2011-02-01 13:33:07.056834200 -0600
++++ src/gst-python-0.10.21/gst/pygstminiobject.h	2011-02-01 13:32:23.891558900 -0600
+@@ -31,13 +31,6 @@ typedef struct {
  #define pygstminiobject_check(v,base) (PyObject_TypeCheck(v,base))
  
  void
@@ -51,11 +55,14 @@
 -			       GType gtype, PyTypeObject *type,
 -			       PyObject *bases);
 -void
- pygstminiobject_register_wrapper(PyObject *self);
+-pygstminiobject_register_wrapper(PyObject *self);
+-
+-void
+ pygst_miniobject_init();
  
- void
---- origsrc/gst-python-0.10.20/testsuite/Makefile.am	2010-03-01 04:11:55.000000000 -0600
-+++ src/gst-python-0.10.20/testsuite/Makefile.am	2010-12-13 00:19:32.649801000 -0600
+ #ifndef _INSIDE_PYGSTMINIOBJECT_
+--- origsrc/gst-python-0.10.21/testsuite/Makefile.am	2011-02-01 13:33:07.072434200 -0600
++++ src/gst-python-0.10.21/testsuite/Makefile.am	2011-02-01 07:29:32.000000000 -0600
 @@ -7,8 +7,8 @@ INCLUDES = \
  noinst_LTLIBRARIES = testhelper.la
  linked_LIBS = testhelper.la
