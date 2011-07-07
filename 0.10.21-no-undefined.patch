@@ -1,75 +1,21 @@
---- origsrc/gst-python-0.10.21/gst/pbutils.override	2011-02-01 13:33:07.041234200 -0600
-+++ src/gst-python-0.10.21/gst/pbutils.override	2011-02-01 13:28:36.895563100 -0600
-@@ -30,7 +30,6 @@ headers
- #include <gst/gst.h>
- 
- #include <gst/pbutils/pbutils.h>
--#include "pygstminiobject.h"
- GST_DEBUG_CATEGORY_EXTERN (pygst_debug);
- #define GST_CAT_DEFAULT pygst_debug
- 
---- origsrc/gst-python-0.10.21/gst/pygst-private.h	2011-02-01 13:33:07.056834200 -0600
-+++ src/gst-python-0.10.21/gst/pygst-private.h	2011-02-01 13:32:39.834786700 -0600
-@@ -38,6 +38,12 @@ PyObject* pygst_iterator_new(GstIterator
- PyObject *
- pygstminiobject_new(GstMiniObject *obj);
- 
-+void
-+pygstminiobject_register_class(PyObject *dict, const gchar *type_name,
-+                   GType gtype, PyTypeObject *type,
-+                   PyObject *bases);
- 
-+void
-+pygstminiobject_register_wrapper(PyObject *self);
- 
- #endif	/* _PYGST_PRIVATE_H_ */
---- origsrc/gst-python-0.10.21/gst/pygst.h	2011-02-01 13:33:07.056834200 -0600
-+++ src/gst-python-0.10.21/gst/pygst.h	2011-02-01 13:32:03.034322600 -0600
-@@ -33,6 +33,10 @@ struct _PyGst_Functions {
-   GstCaps*	(*caps_from_pyobject) (PyObject *object, gboolean *copy);
-   PyObject*	(*iterator_new) (GstIterator *iter);
-   PyObject*     (*miniobject_new) (GstMiniObject *obj);
-+  void      (*miniobject_register_class) (PyObject *dict, const gchar *type_name,
-+                   GType gtype, PyTypeObject *type,
-+                   PyObject *bases);
-+  void      (*miniobject_register_wrapper) (PyObject *self);
- };
- 
- #ifndef _INSIDE_PYGST_
-@@ -46,6 +50,8 @@ struct _PyGst_Functions *_PyGst_API;
- #define pygst_caps_from_pyobject (_PyGst_API->caps_from_pyobject)
- #define pygst_iterator_new (_PyGst_API->iterator_new)
- #define pygstminiobject_new (_PyGst_API->miniobject_new)
-+#define pygstminiobject_register_class (_PyGst_API->miniobject_register_class)
-+#define pygstminiobject_register_wrapper (_PyGst_API->miniobject_register_wrapper)
- 
- static inline PyObject *
- pygst_init(void)
---- origsrc/gst-python-0.10.21/gst/pygstminiobject.h	2011-02-01 13:33:07.056834200 -0600
-+++ src/gst-python-0.10.21/gst/pygstminiobject.h	2011-02-01 13:32:23.891558900 -0600
-@@ -31,13 +31,6 @@ typedef struct {
- #define pygstminiobject_check(v,base) (PyObject_TypeCheck(v,base))
- 
- void
--pygstminiobject_register_class(PyObject *dict, const gchar *type_name,
--			       GType gtype, PyTypeObject *type,
--			       PyObject *bases);
--void
--pygstminiobject_register_wrapper(PyObject *self);
--
--void
- pygst_miniobject_init();
- 
- #ifndef _INSIDE_PYGSTMINIOBJECT_
+--- origsrc/gst-python-0.10.21/gst/Makefile.am	2011-01-05 13:24:37.000000000 -0600
++++ src/gst-python-0.10.21/gst/Makefile.am	2011-07-07 02:38:54.514450800 -0500
+@@ -104,7 +104,7 @@ pbutils_la_CFLAGS = $(common_cflags) $(G
+ pbutils_la_LIBADD = $(common_libadd) $(GST_PLUGINS_BASE_LIBS) -lgstpbutils-0.10
+ pbutils_la_LDFLAGS = $(common_ldflags) \
+ 	-export-symbols-regex "^(initpbutils|_PyGObject_API).*" $(GST_PLUGINS_BASE_LIBS)
+-pbutils_la_SOURCES = pbutilsmodule.c gst-argtypes.c
++pbutils_la_SOURCES = pbutilsmodule.c gst-argtypes.c pygstminiobject.c
+ nodist_pbutils_la_SOURCES = pbutils.c
+ PBUTILS_OVERRIDES = pbutils.override
+ PBUTILS_DEFS = pbutils.defs
 --- origsrc/gst-python-0.10.21/testsuite/Makefile.am	2011-02-01 13:33:07.072434200 -0600
 +++ src/gst-python-0.10.21/testsuite/Makefile.am	2011-02-01 07:29:32.000000000 -0600
-@@ -7,8 +7,8 @@ INCLUDES = \
- noinst_LTLIBRARIES = testhelper.la
+@@ -8,7 +8,7 @@ INCLUDES = \
  linked_LIBS = testhelper.la
  
--testhelper_la_LDFLAGS = -module -avoid-version
+ testhelper_la_LDFLAGS = -module -avoid-version
 -testhelper_la_LIBADD = $(GLIB_LIBS)
-+testhelper_la_LDFLAGS = -module -avoid-version -no-undefined
 +testhelper_la_LIBADD = $(GST_LIBS)
  testhelper_la_CFLAGS = $(PYGOBJECT_CFLAGS)
  testhelper_la_SOURCES = \
