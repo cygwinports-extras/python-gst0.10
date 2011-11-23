@@ -9,7 +9,7 @@ PATCH_URI="0.10.21-no-undefined.patch
 
 PKG_NAMES="${PN} python-pygst"
 PKG_HINTS="setup version"
-python_gst0_10_CONTENTS="--exclude=pygst.* usr/"
+python_gst0_10_CONTENTS="--exclude=pygst.p* usr/"
 python_pygst_CONTENTS="${PYTHON_SITELIB#/}/pygst.*"
 
 CYGPORT_USE_UNSTABLE_API=1
