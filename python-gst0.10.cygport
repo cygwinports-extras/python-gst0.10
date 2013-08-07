@@ -4,7 +4,7 @@ inherit pygtk gstreamer
 NAME="python-gst0.10"
 VERSION=0.10.22
 RELEASE=2
-CATEGORY="Audio Video Python"
+CATEGORY="Python"
 SUMMARY="Python GStreamer 0.10 bindings"
 DESCRIPTION="Python bindings for the GStreamer 0.10 libraries"
 SRC_URI+=" http://cgit.freedesktop.org/gstreamer/gst-python/plain/autogen.sh?h=0.10"
@@ -13,11 +13,10 @@ PATCH_URI="0.10.21-no-undefined.patch
            0.10.17-gstoption-install.patch
            0.10.14-examples.patch"
 
-PKG_NAMES="${NAME} ${NAME}-devel python-pygst"
+PKG_NAMES="${NAME} ${NAME}-devel"
+python_gst0_10_OBSOLETES="python-pygst"
 python_gst0_10_CONTENTS="usr/lib/gstreamer-0.10/ ${PYTHON_SITELIB#/} usr/share/"
 python_gst0_10_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
-python_pygst_CATEGORY="_obsolete"
-python_pygst_SUMMARY="Obsolete package"
 
 CYGPORT_USE_UNSTABLE_API=1
 src_unpack_hook() {
